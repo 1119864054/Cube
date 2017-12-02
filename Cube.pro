@@ -16,3 +16,6 @@ SOURCES += main.cpp\
         widget.cpp
 
 HEADERS  += widget.h
+
+QT += sql
+QT       += core gui sql

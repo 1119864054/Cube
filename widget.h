@@ -2,6 +2,9 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 
 class Widget : public QWidget
 {
@@ -10,6 +13,15 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = 0);
     ~Widget();
+
+private:
+    QLabel *userNameLabel;
+    QLabel *passWordLabel;
+    QLineEdit *userNameLineEdit;
+    QLineEdit *passWordLineEdit;
+    QPushButton *login;
+private slots:
+    void slotLogin();
 };
 
 #endif // WIDGET_H
