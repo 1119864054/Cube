@@ -63,11 +63,24 @@ void Widget::slotLogin(){
     {
         QSqlQuery query;
         query.exec("select * from user");
+        int flag=0;
         while(query.next())
         {
             username = query.value(5).toString();
             password = query.value(6).toString();
             //qDebug() << username << "|" << password;
+            if (userNameLineEdit->text() == username && passWordLineEdit->text() == password)
+            {
+                qDebug() << "登录成功！";
+                QMessageBox::information(this,tr("登录提示"),tr("登录成功"));
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0)
+        {
+            qDebug() << "用户名或密码错误！";
+            QMessageBox::information(this,tr("登录提示"),tr("用户名或密码错误！"));
         }
         db.close();
     }
@@ -75,14 +88,5 @@ void Widget::slotLogin(){
     {
         qDebug() << "opened error";
     }
-    if (userNameLineEdit->text() == username && passWordLineEdit->text() == password)
-    {
-        qDebug() << "登录成功！";
-        QMessageBox::information(this,tr("登录提示"),tr("登录成功"));
-    }
-    else
-    {
-        qDebug() << "用户名或密码错误！";
-        QMessageBox::information(this,tr("登录提示"),tr("用户名或密码错误！"));
-    }
+
 }
